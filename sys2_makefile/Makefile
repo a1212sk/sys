@@ -1,14 +1,18 @@
 #Makefile for printup
 
-printup: print_up.o main.o
-	gcc -o printup print_up.o main.o
+CC = gcc
+CLEAN = rm -f
+PROGNAME = printup
 
-print_up.o: print_up.c print_up.h
-	gcc -c print_up.c
+$(PROGNAME): print_up.o main.o
+	$(CC) -o $@ $^
+
+print_up.o: print_up.c 
+	$(CC) -c $^
 
 main.o: main.c
-	gcc -c main.c
+	$(CC) -c $^
 
 clean:
-	rm -f *.o
-	rm -f printup
+	$(CLEAN) *.o
+	$(CLEAN) $(PROGNAME)
